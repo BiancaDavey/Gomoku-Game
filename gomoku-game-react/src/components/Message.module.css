@@ -1,0 +1,27 @@
+.message {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+    color: white;
+    font-weight: bold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    border-radius: 0.5rem;
+  }
+  
+  .info {
+    background-color: #2196F3;
+  }
+  
+  .success {
+    background-color: rgb(138, 0, 251);
+  }
+  
+  .warning {
+    background-color: #ff9800;
+  }
+  
+  .error {
+    background-color: #BF1266;
+  }

@@ -1,0 +1,21 @@
+.label {
+  font-size: 1.5rem;
+  color: aqua;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.select {
+  background-color: black;
+  margin-top: 2rem;
+  width: 100%;
+  display: block;
+  border: 3px solid rgb(255, 22, 185);
+  border-radius: 0.5rem;
+  color: whitesmoke;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.8rem;
+}
