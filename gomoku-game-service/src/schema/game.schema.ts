@@ -1,4 +1,4 @@
-import { string, object, TypeOf } from "zod";
+import { string, object, number, array, TypeOf } from "zod";
 
 const payload = {
     body: object({
@@ -18,11 +18,15 @@ const payload = {
       }),
       board: string({
         required_error: "Board is required",
-      })
+      }),
+      //  Added 20:30 WK.8
+      stones: array(number({
+        required_error: "Stones are required",
+      })).nonempty()
     })
   }
 
-const params = {  // Added 19:30 WK8.4-5. Formerly getParams.
+const getParams = {  // Added 19:30 WK8.4-5. Formerly getParams.
   params: object({
     gameId: string({  // Added 19:30 WK8_4-5. Formerly gameId. ERROR when id.
       required_error: "Game Id is required.",
@@ -39,7 +43,7 @@ const updateDeleteParams = {
 };
 
 export const getGameByIdSchema = object({
-    ...params  // Formerly getParams. 19:3 WK8.4-5
+    ...getParams  // Formerly getParams. 19:3 WK8.4-5
 })
 export const createGameSchema = object({
     ...payload

@@ -11,7 +11,7 @@ const app: Express = express();
 const port = process.env.PORT;
 app.use(express.json());
 
-app.use('/games', gameHandler);
+app.use('/api/games', gameHandler);
 
 mongoose.connection.once('connected', () => {
     console.log('⚡️[server]: Connected to MongoDB.');

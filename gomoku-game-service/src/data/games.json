@@ -4,11 +4,13 @@
       "status": "Game Status",
       "date": "Date",
       "board": "Board Size 5",
+      "stones": [4,5]
     },
     {
       "userId": "62f88bd5e67347af189c4bbb",
       "status": "Game Status",
       "date": "Date",
-      "board": "Board Size 7"
+      "board": "Board Size 7",
+      "stones": [1,4]
     }
 ]
