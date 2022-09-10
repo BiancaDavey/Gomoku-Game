@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import validateSchema from '../middleware/validateSchema';
 import { getGameByIdSchema, createGameSchema, updateGameSchema, deleteGameSchema } from '../schema/game.schema';
- 
+
 const gameHandler = express.Router();
  
 const GAMES = [
@@ -19,12 +19,12 @@ const GAMES = [
     }
 ]
 
-//  GET all games.
+//  GET all games. 
 gameHandler.get("/", (req: Request, res: Response) => {
    res.status(200).json(GAMES);
 })
  
-//  GET game by gameId. 
+//  GET game by gameId.
 gameHandler.get("/:gameId", validateSchema(getGameByIdSchema), (req: Request, res: Response) => {
     const result = GAMES.find((g) => (g.gameId === req.params.gameId));
     if (result) {

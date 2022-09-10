@@ -14,8 +14,8 @@ const run = async () => {
     await UserModel.deleteMany();
     await UserModel.create(users);
 
-    await MovieModel.deleteMany();
-    await MovieModel.insertMany(movies);
+    await GameModel.deleteMany();
+    await GameModel.insertMany(games);
 
     process.exit(0)
   } catch (err) {
