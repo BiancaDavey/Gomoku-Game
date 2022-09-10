@@ -9,9 +9,9 @@ export interface GameDocument extends Document {
 }
 
 const gameSchema = new mongoose.Schema({
-    status: string,
-    date: string,
-    board: string
+    status: String,
+    date: String,
+    board: String
 })
 
 export default mongoose.model<GameDocument>("Game", gameSchema)

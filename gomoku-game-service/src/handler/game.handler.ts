@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import mongoose from "mongoose";
 import validateSchema from '../middleware/validateSchema';
 import { getGameByIdSchema, createGameSchema, updateGameSchema, deleteGameSchema } from '../schema/game.schema';
 
@@ -33,6 +34,7 @@ gameHandler.get("/:gameId", validateSchema(getGameByIdSchema), (req: Request, re
     res.sendStatus(404);
 })
 
+//  Current for WK8_03.
 //  POST Create a new game.
 gameHandler.post("/", validateSchema(createGameSchema), (req: Request, res: Response) => {
    console.log("Create new game.");
@@ -46,7 +48,7 @@ gameHandler.put("/:gameId", validateSchema(updateGameSchema), (req: Request, res
    console.log("Modify game.");
    //  Update in storage.
    const game = req.body;
-   res.status(200).json(game)
+   res.status(200).json(game);
 })
  
 //  DELETE Delete a game.

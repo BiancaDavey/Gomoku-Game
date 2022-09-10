@@ -12,7 +12,7 @@ const run = async () => {
     await connect();
 
     await UserModel.deleteMany();
-    await UserModel.create(users);
+    await UserModel.insertMany(users);
 
     await GameModel.deleteMany();
     await GameModel.insertMany(games);
