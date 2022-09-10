@@ -22,17 +22,21 @@ export async function createGame(input: DocumentDefinition<GameDocument>){
 }
 
 //  Function to update a game.
-export async function updateGame(id: string, input: DocumentDefinition<GameDocument>){
+export async function updateGame(id: string, userId: string, input: DocumentDefinition<GameDocument>){  // 10/09 added userId.
     return GameModel.findOneAndUpdate(
-        {_id: new mongoose.Types.ObjectId(id)},
+        {
+            _id: new mongoose.Types.ObjectId(id),
+            userId: new mongoose.Types.ObjectId(userId) // 10/09 added.
+        },
         input,
-        {new: true}
+        { new: true }
     )
 }
 
 //  Function to delete a game.
-export async function deleteGame(id: string){
+export async function deleteGame(id: string, userId: string){  // 10/09 added userId
     return GameModel.deleteOne({
-        _id: new mongoose.Types.ObjectId(id)
+        _id: new mongoose.Types.ObjectId(id),
+        userId: new mongoose.Types.ObjectId(userId)
     })
 }

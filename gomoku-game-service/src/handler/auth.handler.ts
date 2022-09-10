@@ -7,13 +7,14 @@ import { signJwt } from "../util/jwt";
 
 const authHandler = express.Router();
 
+//  Register a new user.
 authHandler.post("/register", validateSchema(registerSchema), async (req: Request<{}, {}, RegisterInput["body"]>, res: Response) => {
   try {
     const { username, password } = req.body;
     //  Check whether user already exists in the database.
     const existingUser = await getUserByUsername(username);
     if (existingUser) {
-      return res.status(409).send("User Already Exist. Please Login");
+      return res.status(409).send("User Already Exists. Please Login.");
     }
 
     //  Encrypt user password.
@@ -22,7 +23,7 @@ authHandler.post("/register", validateSchema(registerSchema), async (req: Reques
     //  Create user in the database.
     const newUser = await createUser({
       username,
-      password: encryptedPassword,
+      password: encryptedPassword
     });
 
     //  Create token.
@@ -35,6 +36,7 @@ authHandler.post("/register", validateSchema(registerSchema), async (req: Reques
   }
 })
 
+//  Login as a user.
 authHandler.post("/login", async (req: Request<{}, {}, LoginInput["body"]>, res: Response) => {
   try {
     //  Get user input.
