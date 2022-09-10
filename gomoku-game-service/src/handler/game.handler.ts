@@ -74,6 +74,8 @@ gameHandler.get("/", async (req: Request, res: Response) => {  // TODO: or "/:us
     return res.status(200).json(games);
 })
 
+
+/* 21:30
 //  Current for WK8_03.
 //  POST Create a new game.
 gameHandler.post("/", validateSchema(createGameSchema), (req: Request, res: Response) => {
@@ -97,6 +99,8 @@ gameHandler.delete("/:gameId", validateSchema(deleteGameSchema), (req: Request, 
    //  Delete in storage.
    res.sendStatus(200);
 })
+*/
+
 
 
 // 21:00 NEW POST: Create a game.
