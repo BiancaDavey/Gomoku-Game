@@ -31,7 +31,7 @@ export async function updateGame(id: string, input: DocumentDefinition<GameDocum
 }
 
 //  Function to delete a game.
-export async function deleteBooking(id: string){
+export async function deleteGame(id: string){
     return GameModel.deleteOne({
         _id: new mongoose.Types.ObjectId(id)
     })

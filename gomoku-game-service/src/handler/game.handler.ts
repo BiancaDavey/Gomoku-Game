@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import validateSchema from '../middleware/validateSchema';
 import { getGameByIdSchema, createGameSchema, updateGameSchema, deleteGameSchema } from '../schema/game.schema';
-import { getAllGames, getGameById, getGamesByUserId } from '../service/game.service';
+import { getAllGames, getGameById, getGamesByUserId, createGame, updateGame, deleteGame } from '../service/game.service';
 
 const gameHandler = express.Router();
  
@@ -96,6 +96,32 @@ gameHandler.delete("/:gameId", validateSchema(deleteGameSchema), (req: Request, 
    console.log("Delete game.");
    //  Delete in storage.
    res.sendStatus(200);
+})
+
+
+// 21:00 NEW POST: Create a game.
+gameHandler.post("/", validateSchema(createGameSchema), async (req: Request, res: Response) => {
+    const userId = "62f88bd5e67347af189c4baa";
+    const game = req.body;
+    const newGame = await createGame({ ...game, userId });
+    return res.status(200).send(newGame);
+})
+
+// 21:00 NEW PUT: Update a game.
+gameHandler.put("/:id", validateSchema(updateGameSchema), async (req: Request, res: Response) => {
+    const userId = "62f88bd5e67347af189c4baa"; 
+    const game = req.body;
+    const gameId = req.params.id;
+    const newGame = await updateGame(gameId, { ...game, userId });
+    if (!newGame) return res.sendStatus(400);
+    return res.status(200).json(newGame);
+})
+
+// 21:00 NEW DELETE: Delete a game.
+gameHandler.delete("/:id", validateSchema(deleteGameSchema), async (req: Request, res: Response) => {
+    const gameId = req.params.id;
+    await deleteGame(gameId);
+    res.sendStatus(200);
 })
 
 export default gameHandler;
