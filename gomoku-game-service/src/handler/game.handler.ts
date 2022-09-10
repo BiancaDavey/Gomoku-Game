@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import validateSchema from '../middleware/validateSchema';
 import { getGameByIdSchema, createGameSchema, updateGameSchema, deleteGameSchema } from '../schema/game.schema';
+import { getAllGames, getGameById, getGamesByUserId } from '../service/game.service';
 
 const gameHandler = express.Router();
  
@@ -32,6 +33,33 @@ gameHandler.get("/:gameId", validateSchema(getGameByIdSchema), (req: Request, re
         return res.status(200).json(result);
     }
     res.sendStatus(404);
+})
+
+// NEW WK8-4.5 Get all games.
+gameHandler.get("/", async (req: Request, res: Response) => {
+    try {
+        const result = await getAllGames();
+        return res.status(200).json(result);
+    } catch (err) {
+        return res.status(500).send(err);
+    }
+})
+
+// NEW WK8-4.5 Get game by Id.
+gameHandler.get("/:id", validateSchema(getGameByIdSchema), async (req: Request, res: Response) => {
+    const gameId = req.params.id;  // formerly, just gameId in the get.
+    const userId = "62f88bd5e67347af189c4baa";
+    const game = await getGameById(gameId);
+    if (!game) return res.sendStatus(404);
+    return res.status(200).json({ ...game });
+})
+
+// NEW WK8.4-5 Get game by userId.
+gameHandler.get("/", async (req: Request, res: Response) => {
+    const userId = "62f88bd5e67347af189c4baa";
+    const games = await getGamesByUserId(userId);
+    if (!games) return res.sendStatus(404);
+    return res.status(200).json(games);
 })
 
 //  Current for WK8_03.
