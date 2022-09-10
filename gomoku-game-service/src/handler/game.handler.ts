@@ -6,6 +6,7 @@ import { getAllGames, getGameById, getGamesByUserId, createGame, updateGame, del
 
 const gameHandler = express.Router();
  
+/*
 const GAMES = [
     {
         "gameId": "1",
@@ -22,6 +23,8 @@ const GAMES = [
         "stones": [1,5]
     }
 ]
+*/
+
 
 //  OLD GET all games.
 /* 
@@ -29,18 +32,9 @@ gameHandler.get("/", (req: Request, res: Response) => {
    res.status(200).json(GAMES);
 })
 */
- 
-//  OLD GET game by gameId.
-gameHandler.get("/:gameId", validateSchema(getGameByIdSchema), (req: Request, res: Response) => {
-    const result = GAMES.find((g) => (g.gameId === req.params.gameId));
-    if (result) {
-        return res.status(200).json(result);
-    }
-    res.sendStatus(404);
-})
 
 // NEW WK8-4.5 Get all games.
-gameHandler.get("/", async (req: Request, res: Response) => {
+////gameHandler.get("/", async (req: Request, res: Response) => {
     /*
     try {
         const result = await getAllGames();
@@ -50,11 +44,21 @@ gameHandler.get("/", async (req: Request, res: Response) => {
     }
     */
     
-   const result = await getAllGames();
-   if (!result) return res.sendStatus(404);
-   return res.status(200).json({ ...GAMES });  // 20:00 WK8.4-5. This returns 0 {GAMES 1}, 1 {GAMES 2}.
-   // return res.status(200).json({...result});  // 2:00 WK8.4-5. This returns {} empty.
+   ////const result = await getAllGames();
+   ////if (!result) return res.sendStatus(404);
+   ////return res.status(200).json({ ...GAMES });  // 20:00 WK8.4-5. This returns 0 {GAMES 1}, 1 {GAMES 2}.
+   ////// return res.status(200).json({...result});  // 2:00 WK8.4-5. This returns {} empty.
     
+////})
+
+
+//  OLD GET game by gameId.
+gameHandler.get("/:gameId", validateSchema(getGameByIdSchema), (req: Request, res: Response) => {
+    const result = GAMES.find((g) => (g.gameId === req.params.gameId));
+    if (result) {
+        return res.status(200).json(result);
+    }
+    res.sendStatus(404);
 })
 
 // NEW WK8-4.5 Get game by Id. // doesn't work yet.
@@ -66,7 +70,9 @@ gameHandler.get("/:id", validateSchema(getGameByIdSchema), async (req: Request, 
     return res.status(200).json({ ...game });
 })
 
-// NEW WK8.4-5 Get game by userId.  
+
+
+// 22:00  // NEW WK8.4-5 Get games by userId.  
 gameHandler.get("/", async (req: Request, res: Response) => {  // TODO: or "/:userId"?
     const userId = "62f88bd5e67347af189c4baa";
     const games = await getGamesByUserId(userId);
@@ -75,35 +81,9 @@ gameHandler.get("/", async (req: Request, res: Response) => {  // TODO: or "/:us
 })
 
 
-/* 21:30
-//  Current for WK8_03.
-//  POST Create a new game.
-gameHandler.post("/", validateSchema(createGameSchema), (req: Request, res: Response) => {
-   console.log("Create new game.");
-   //  Save into storage.
-   const game = req.body;
-   res.status(200).json(game)
-})
- 
-//  PUT Modify a game.
-gameHandler.put("/:gameId", validateSchema(updateGameSchema), (req: Request, res: Response) => {
-   console.log("Modify game.");
-   //  Update in storage.
-   const game = req.body;
-   res.status(200).json(game);
-})
- 
-//  DELETE Delete a game.
-gameHandler.delete("/:gameId", validateSchema(deleteGameSchema), (req: Request, res: Response) => {
-   console.log("Delete game.");
-   //  Delete in storage.
-   res.sendStatus(200);
-})
-*/
 
 
-
-// 21:00 NEW POST: Create a game.
+//  Create a game.
 gameHandler.post("/", validateSchema(createGameSchema), async (req: Request, res: Response) => {
     const userId = "62f88bd5e67347af189c4baa";
     const game = req.body;
@@ -111,7 +91,7 @@ gameHandler.post("/", validateSchema(createGameSchema), async (req: Request, res
     return res.status(200).send(newGame);
 })
 
-// 21:00 NEW PUT: Update a game.
+//  Update a game.
 gameHandler.put("/:id", validateSchema(updateGameSchema), async (req: Request, res: Response) => {
     const userId = "62f88bd5e67347af189c4baa"; 
     const game = req.body;
@@ -121,7 +101,7 @@ gameHandler.put("/:id", validateSchema(updateGameSchema), async (req: Request, r
     return res.status(200).json(newGame);
 })
 
-// 21:00 NEW DELETE: Delete a game.
+//  Delete a game.
 gameHandler.delete("/:id", validateSchema(deleteGameSchema), async (req: Request, res: Response) => {
     const gameId = req.params.id;
     await deleteGame(gameId);
