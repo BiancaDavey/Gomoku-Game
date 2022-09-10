@@ -2,7 +2,7 @@ import { string, object, number, array, TypeOf } from "zod";
 
 const payload = {
     body: object({
-      // TODO: gameId is here too. 19:30 WK8-4.5
+      // TODO: gameId is here too. 19:30 WK8-4.5. 21:00: it's not in GitHub version.
       gameId: string({
         required_error: "Game Id is required",
       }),
@@ -26,6 +26,7 @@ const payload = {
     })
   }
 
+// TODO: 21:00 GitHub it's sessionId, here id?
 const getParams = {  // Added 19:30 WK8.4-5. Formerly getParams.
   params: object({
     gameId: string({  // Added 19:30 WK8_4-5. Formerly gameId. ERROR when id.
@@ -34,6 +35,7 @@ const getParams = {  // Added 19:30 WK8.4-5. Formerly getParams.
   }),
 };
 
+// TODO 21:00: GitHub it's id.
 const updateDeleteParams = {
     params: object({
       gameId: string({  // TODO WK8-4.5: should this be id too? Formerly gameId.
