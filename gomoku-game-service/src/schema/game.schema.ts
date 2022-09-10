@@ -2,13 +2,6 @@ import { string, object, number, array, TypeOf } from "zod";
 
 const payload = {
     body: object({
-      // TODO: gameId is here too. 19:30 WK8-4.5. 21:00: it's not in GitHub version.
-      /* 21:30
-      gameId: string({
-        required_error: "Game Id is required",
-      }),
-      */
-      //  Added 19:30 WK8.4-5
       userId: string({
         required_error: "User Id is required",
       }),
@@ -28,29 +21,24 @@ const payload = {
     })
   }
 
-// TODO: 21:00 GitHub it's sessionId, here id?
-const getParams = {  // Added 19:30 WK8.4-5. Formerly getParams.
+const getParams = {
   params: object({
-    /* 21:30
-    gameId: string({  // Added 19:30 WK8_4-5. Formerly gameId. ERROR when id.
-    */
-    id: string({  // 21:30
+    id: string({
       required_error: "Game Id is required.",
     }),
   }),
 };
 
-// TODO 21:00: GitHub it's id.
 const updateDeleteParams = {
     params: object({
-      id: string({  // 21:30  // TODO WK8-4.5: should this be id too? Formerly gameId.
+      id: string({
         required_error: "Game Id is required.",
       }),
     }),
 };
 
 export const getGameByIdSchema = object({
-    ...getParams  // Formerly getParams. 19:3 WK8.4-5
+    ...getParams
 })
 export const createGameSchema = object({
     ...payload

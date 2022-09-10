@@ -10,7 +10,7 @@ export interface GameDocument extends Document {
 }
 
 const gameSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User"},  // Added 19:30, attempting WK8_4-5.
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User"},
     status: String,
     date: String,
     board: Number,
