@@ -1,0 +1,16 @@
+[
+    {
+      "_id": "62f87675bebc07b56c891634",
+      "gameId": "62f875f70860a1d7140f99d1",
+      "status": "Game Status",
+      "date": "Date",
+      "board": "Board Size 5",
+    },
+    {
+      "_id": "62f87686046144b2db50b8a1",
+      "gameId": "62f875f70860a1d7140f99d1",
+      "status": "Game Status",
+      "date": "Date",
+      "board": "Board Size 7"
+    }
+]
