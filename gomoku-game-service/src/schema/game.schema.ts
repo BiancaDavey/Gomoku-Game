@@ -16,7 +16,7 @@ const payload = {
       date: string({
         required_error: "Date is required",
       }),
-      board: string({
+      board: number({
         required_error: "Board is required",
       }),
       //  Added 20:30 WK.8

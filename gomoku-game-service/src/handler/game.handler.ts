@@ -11,14 +11,14 @@ const GAMES = [
         "gameId": "1",
         "status": "Game Status 1",
         "date": "Date 1",
-        "board": "Board Size 1",
+        "board": 1,
         "stones": [1,3]
     },
     {
         "gameId": "2",
         "status": "Game Status 2",
         "date": "Date 2",
-        "board": "Board Size 2",
+        "board": 9,
         "stones": [1,5]
     }
 ]
