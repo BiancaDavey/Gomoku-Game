@@ -1,72 +1,63 @@
 import { useState, useContext, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Input, Message, Button } from '../components'
-import users from '../users.json'
+import users from '../users.json'  // 11/09 WK9.4.9 Removed
 import { UserContext } from '../context'
 import style from './Login.module.css'
 
 export default function Login() {
     const { login } = useContext(UserContext)
-    //  Initial value null. Need to tell useRef what kind of value to expect. null or HTMLInputElement.
     const usernameInput = useRef<HTMLInputElement | null>(null)
     const navigate = useNavigate()
-    //  Returns current value & function for updating the state
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    //  To validate credential, false by default.
-    const [isCredentialInvalid, setIsCredentialInvalid] = useState(false)
-  
-    const handleLogin = () => {
-        const user = users.find(
-            (u) => u.username === username && u.password === password
-        )
-        if (!user) {
-            setIsCredentialInvalid(true)
+    const [errorMessage, setErrorMessage] = useState('')
+
+    const handleLogin = async () => {
+        setErrorMessage('')
+        const result = await login(username, password)
+        if (result === true) {
+            navigate('/')
         }
         else {
-            // TODO: login is not a function.
-            login(username)
-            //  Navigate to home page upon successful login.
-            navigate('/')
+            setErrorMessage(result)
         }
     }
   
   //  Current ref will be the input reference.
-      useEffect(() => {
-          if (usernameInput.current){
-              usernameInput.current.focus()
-          }
-      }, [])
+    useEffect(() => {
+        if (usernameInput.current){
+            usernameInput.current.focus()
+        }
+    }, [])
   
-      return (
-          <form className={style.container} onSubmit={(e) => {
-              e.preventDefault()
-              handleLogin()
-          }}>
-              {isCredentialInvalid && 
-                  (<Message variant="error" message="Invalid username or password." />
-                  )}
-              <Input 
-                  ref={usernameInput}
-                  name="username" 
-                  placeholder="Username" 
-                  value={username} 
-                  onChange={(e) => { 
-                      setUsername(e.target.value)
-                      setIsCredentialInvalid(false)
-                  }} 
-              />
-              <Input 
-                  name="password"
-                  type="password" 
-                  placeholder="Password" 
-                  value={password} 
-                  onChange={(e) => {
-                      setPassword(e.target.value)
-                      setIsCredentialInvalid(false)
-                  }} 
-              />
-              <Button type="submit">Login</Button>
-          </form>
-      )
-  }
+    return (
+        <form className={style.container} onSubmit={(e) => {
+            e.preventDefault()
+            handleLogin()
+        }}>
+            {errorMessage && <Message variant="error" message={errorMessage} />}  
+            <Input 
+                ref={usernameInput}
+                name="username" 
+                placeholder="Username" 
+                value={username} 
+                onChange={(e) => { 
+                    setUsername(e.target.value)
+                    setErrorMessage('')
+                }} 
+            />
+            <Input 
+                name="password"
+                type="password" 
+                placeholder="Password" 
+                value={password} 
+                onChange={(e) => {
+                    setPassword(e.target.value)
+                    setErrorMessage('')
+                }} 
+            />
+            <Button type="submit" disabled={!username || !password}>Login</Button>
+        </form>
+    )
+}
