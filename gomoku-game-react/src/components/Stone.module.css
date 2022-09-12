@@ -16,11 +16,11 @@
   cursor: not-allowed;
   background-color: #000;
   color: white;
-  border-color: whitesmoke;
+  border-color: aqua;
 }
 
 .stone.white {
   cursor: not-allowed;
   background-color: #fff;
-  border-color: whitesmoke;
+  border-color: fuchsia;
 }

@@ -1,6 +1,5 @@
 import { memo } from 'react'
 import { STONE_STATUS } from '../constants'
-
 import style from './Stone.module.css'
 
 const getClassNames = (status: STONE_STATUS) => {
