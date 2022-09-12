@@ -13,3 +13,6 @@ export enum GAME_STATUS {
   WHITE_WIN = 'Winner: Player Two White',
   DRAW = 'Draw',
 }
+
+// 11/09 WK9.5.11
+// INITIALISE = 'INITIALISE'

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { User, Credential } from './../types/User'
 import { UserContext } from '../context'
 import { useLocalStorage } from '../hooks'
@@ -15,7 +14,7 @@ export default function UserProvider({ children }: UserProviderProps) {
         setToken(user.token)
     }
 
-    const login = async (username: string, password: string) => {  // 11/09 WK.4.9 Added.
+    const login = async (username: string, password: string) => { 
         try {
             const user = await post<Credential, User>('/api/auth/login', {
                 username,
@@ -24,9 +23,9 @@ export default function UserProvider({ children }: UserProviderProps) {
             setUser(user)
             setToken(user.token)
             return true
-        } catch (err) {
-            if (err instanceof Error) {
-                return err.message
+        } catch (error) {
+            if (error instanceof Error) {
+                return error.message
             }
             return 'Unable to login.'
         }
@@ -41,9 +40,9 @@ export default function UserProvider({ children }: UserProviderProps) {
             setUser(user)
             setToken(user.token)
             return true
-        } catch (err) {
-            if (err instanceof Error) {
-                return err.message
+        } catch (error) {
+            if (error instanceof Error) {
+                return error.message
             }
             return 'Unable to register.'
         }

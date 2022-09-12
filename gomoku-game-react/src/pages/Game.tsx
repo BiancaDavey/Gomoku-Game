@@ -6,6 +6,7 @@ import { isGameEnded } from '../utils'
 import { AVAILABLE_GAME_SIZES, GAME_STATUS } from '../constants'
 import type { Position, GameData } from '../types'
 import style from './Game.module.css'
+import { get, post, put, del } from '../utils/http'
 
 const isGameOver = (gameStatus: GAME_STATUS) =>
   [GAME_STATUS.DRAW, GAME_STATUS.BLACK_WIN, GAME_STATUS.WHITE_WIN].includes(
@@ -19,6 +20,8 @@ export default function Game() {
   const size = parseInt(searchParams.get('size') || '0')
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.BLACK_MOVE)
   const [moves, setMoves] = useState<Position[]>([])
+  // TODO 11/09: Add _id, or auth generated?
+  const _id = "gameId"
 
   if (!AVAILABLE_GAME_SIZES.includes(size)) {
     return (
@@ -66,9 +69,10 @@ export default function Game() {
     )
       return
     if (isGameOver(gameStatus)) {
+      // TODO: 11/09 Add _id. Or generated auto?
       setGames([
         ...games,
-        { size, moves, date: new Date().toString(), result: gameStatus },
+        { _id, size, moves, date: new Date().toString(), result: gameStatus },
       ])
       navigate('/games')
     } else {

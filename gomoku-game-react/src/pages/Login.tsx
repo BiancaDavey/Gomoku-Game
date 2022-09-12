@@ -32,10 +32,13 @@ export default function Login() {
     }, [])
   
     return (
-        <form className={style.container} onSubmit={(e) => {
-            e.preventDefault()
-            handleLogin()
-        }}>
+        <form 
+            className={style.container} 
+            onSubmit={(e) => {
+                e.preventDefault()
+                handleLogin()
+            }}
+        >
             {errorMessage && <Message variant="error" message={errorMessage} />}  
             <Input 
                 ref={usernameInput}
@@ -57,7 +60,9 @@ export default function Login() {
                     setErrorMessage('')
                 }} 
             />
-            <Button type="submit" disabled={!username || !password}>Login</Button>
+            <Button type="submit" disabled={!username || !password}>
+                Login
+            </Button>
         </form>
     )
 }

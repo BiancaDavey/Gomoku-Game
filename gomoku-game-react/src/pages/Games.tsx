@@ -1,11 +1,27 @@
+import { useContext, useCallback, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLocalStorage } from '../hooks'
 import type { GameData } from '../types'
 import style from './Games.module.css'
+import { get } from '../utils/http'
 
 export default function Games() {
   const navigate = useNavigate()
-  const [games] = useLocalStorage<GameData[]>('games', [])
+  const [games] = useLocalStorage<GameData[]>('games', [])  // 11/09 WK9.6 Remove.
+  
+  const [pastGames, setGames] = useState<GameData[]>([])   //  11/09 WK9.6 Added.
+  //  11/09 WK9.6 Added:
+  const fetchGames = useCallback(async () => {
+    try {
+      const result = await get<GameData[]>('/api/games')
+      setGames(result)
+    } catch (error) {
+      console.log((error as Error).message)
+      navigate('/')
+    }
+  }, [navigate])
+
+// 11/09 WK9.6 Need to remove. But it's based on _id, which game doesn't have.
 
   return (
     <>
@@ -29,3 +45,4 @@ export default function Games() {
     </>
   )
 }
+
