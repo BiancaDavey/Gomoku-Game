@@ -1,13 +1,18 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useContext } from 'react'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { useLocalStorage } from '../hooks'
 import { Board, Button } from '../components'
+import { UserContext } from '../context'
 import type { GameData } from '../types'
 import style from './GameLog.module.css'
 
 export default function GameLog() {
+  const { user } = useContext(UserContext)
   const { gameId = '' } = useParams()
   const navigate = useNavigate()
   const [games] = useLocalStorage<GameData[]>('games', [])
+    //  If user is not logged in, redirect to the login page.
+    if (!user) return <Navigate to="/login" replace/>
   const game = games.find(
     (g) => new Date(g.date).getTime() === parseInt(gameId)
   )

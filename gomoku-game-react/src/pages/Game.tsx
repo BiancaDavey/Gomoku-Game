@@ -2,12 +2,12 @@ import { useState, useContext } from 'react'
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 import { useLocalStorage } from '../hooks'
 import { Board, Button } from '../components'
+import { UserContext } from '../context'
 import { isGameEnded } from '../utils'
 import { AVAILABLE_GAME_SIZES, GAME_STATUS } from '../constants'
 import type { Position, GameData } from '../types'
 import style from './Game.module.css'
 import { get, post, put, del } from '../utils/http'
-import { UserContext } from '../context'
 
 const isGameOver = (gameStatus: GAME_STATUS) =>
   [GAME_STATUS.DRAW, GAME_STATUS.BLACK_WIN, GAME_STATUS.WHITE_WIN].includes(
