@@ -23,7 +23,7 @@ export default function Game() {
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.BLACK_MOVE)
   const [moves, setMoves] = useState<Position[]>([])
   //  If user is not logged in, redirect to the login page.
-  //  if (!user) return <Navigate to="/login" replace/>
+  if (!user) return <Navigate to="/login" replace/>
   // TODO 11/09: Add _id, or auth generated?
   const _id = "gameId"
 
