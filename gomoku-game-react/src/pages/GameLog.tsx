@@ -24,6 +24,7 @@ export default function GameLog() {
     )
 
   const { size, moves, result } = game
+  console.log(`Moves: ${moves}`)
 
   return (
     <>

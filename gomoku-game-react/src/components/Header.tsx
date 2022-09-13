@@ -49,25 +49,3 @@ export default function Header() {
     </header>
   )
 }
-
-  /*
-  return (
-    <header className={style.header}>
-      <div className={style.container}>
-        <div className={style.title}>
-          <Link to="/">Gomoku</Link>
-        </div>
-        <div className={style.actions}>
-          <button className={style.action} onClick={() => navigate('/games')}>
-            PREVIOUS GAMES
-          </button>
-          <button className={style.action} onClick={() => navigate('/login')}>
-            LOGIN
-          </button>
-          <button className={style.action} onClick={() => navigate('/sign-up')}>
-            SIGN UP
-          </button>
-        </div>
-      </div>
-    </header>
-    */

@@ -5,19 +5,19 @@ const payload = {
       userId: string({
         required_error: "User Id is required",
       }),
-      status: string({
-        required_error: "Status is required",
+      size: number({
+        required_error: "Size is required",
       }),
+      // TODO: number
+      moves: array(number({ 
+        required_error: "Moves is required",
+      })).nonempty(),
       date: string({
         required_error: "Date is required",
       }),
-      board: number({
-        required_error: "Board is required",
-      }),
-      //  Added 20:30 WK.8
-      stones: array(number({
-        required_error: "Stones are required",
-      })).nonempty()
+      result: string({
+        required_error: "Result is required",
+      })
     })
   }
 

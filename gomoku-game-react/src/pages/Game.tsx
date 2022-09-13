@@ -38,6 +38,9 @@ export default function Game() {
   const updateGameStatus = (move: Position) => {
     if (isGameOver(gameStatus)) return
     const updatedMoves = [...moves, move]
+    console.log(`moves: ${moves}`)
+    console.log(`move: ${move}`)
+    console.log(`updatedMoves: ${updatedMoves}`)
     if (isGameEnded(size, updatedMoves)) {
       if (updatedMoves.length === size * size) {
         setGameStatus(GAME_STATUS.DRAW)

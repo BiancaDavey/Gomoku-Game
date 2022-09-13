@@ -1,4 +1,5 @@
 import mongoose, { DocumentDefinition } from 'mongoose';
+import { GameDocument } from '../model/game.model';
 import GameModel from '../model/game.model';
 
 //  Function to return all games.
