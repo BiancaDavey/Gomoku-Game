@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 import { useLocalStorage } from '../hooks'
 import { Board, Button } from '../components'
 import { isGameEnded } from '../utils'
@@ -7,6 +7,7 @@ import { AVAILABLE_GAME_SIZES, GAME_STATUS } from '../constants'
 import type { Position, GameData } from '../types'
 import style from './Game.module.css'
 import { get, post, put, del } from '../utils/http'
+import { UserContext } from '../context'
 
 const isGameOver = (gameStatus: GAME_STATUS) =>
   [GAME_STATUS.DRAW, GAME_STATUS.BLACK_WIN, GAME_STATUS.WHITE_WIN].includes(
@@ -14,12 +15,15 @@ const isGameOver = (gameStatus: GAME_STATUS) =>
   )
 
 export default function Game() {
+  const { user } = useContext(UserContext)
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const [games, setGames] = useLocalStorage<GameData[]>('games', [])
   const size = parseInt(searchParams.get('size') || '0')
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.BLACK_MOVE)
   const [moves, setMoves] = useState<Position[]>([])
+  //  If user is not logged in, redirect to the login page.
+  //  if (!user) return <Navigate to="/login" replace/>
   // TODO 11/09: Add _id, or auth generated?
   const _id = "gameId"
 

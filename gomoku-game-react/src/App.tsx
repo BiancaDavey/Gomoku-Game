@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { Header } from './components'
+import { Header, UserProvider } from './components'
 import { Home, Game, Games, GameLog, Login, SignUp } from './pages'
 import style from './App.module.css'
 
 function App() {
   return (
-    <>
+    <UserProvider>
       <Header />
       <main className={style.main}>
         <div className={style.container}>
@@ -20,7 +20,7 @@ function App() {
           </Routes>
         </div>
       </main>
-    </>
+    </UserProvider>
   )
 }
 
