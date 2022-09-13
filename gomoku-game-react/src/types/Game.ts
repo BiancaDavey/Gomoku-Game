@@ -1,8 +1,8 @@
 export type Game = {
     _id: string,
     userId: string,
-    status: string,
+    size: number,
+    moves: number[][],
     date: string,
-    board: string,
-    stones: number[]
+    result: string
 }

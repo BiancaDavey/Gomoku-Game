@@ -14,5 +14,8 @@ export enum GAME_STATUS {
   DRAW = 'Draw',
 }
 
+// 13/09 added.
+export const API_HOST = process.env.REACT_APP_API_HOST || ''
+
 // 11/09 WK9.5.11
 // INITIALISE = 'INITIALISE'

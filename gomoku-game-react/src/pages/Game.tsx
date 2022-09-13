@@ -9,6 +9,11 @@ import type { Position, GameData } from '../types'
 import style from './Game.module.css'
 import { get, post, put, del } from '../utils/http'
 
+// TODO: post request to create a new game. OR should this be in Home, upon clicking Start button?
+// TODO: get request to re-render board.
+// TODO: put request to update board.
+// TODO: delete request to delete upon leave && not ended, or upon restart.
+
 const isGameOver = (gameStatus: GAME_STATUS) =>
   [GAME_STATUS.DRAW, GAME_STATUS.BLACK_WIN, GAME_STATUS.WHITE_WIN].includes(
     gameStatus
@@ -24,7 +29,7 @@ export default function Game() {
   const [moves, setMoves] = useState<Position[]>([])
   //  If user is not logged in, redirect to the login page.
   if (!user) return <Navigate to="/login" replace/>
-  // TODO 11/09: Add _id, or auth generated?
+  // TODO 11/09: Add _id, or auto generated?
   const _id = "gameId"
 
   if (!AVAILABLE_GAME_SIZES.includes(size)) {
