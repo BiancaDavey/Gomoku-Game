@@ -1,14 +1,15 @@
 import { useContext, useCallback, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { UserContext } from '../context'
 import { useLocalStorage } from '../hooks'
 import type { GameData } from '../types'
 import style from './Games.module.css'
 import { get } from '../utils/http'
 
 export default function Games() {
+  const { user } = useContext(UserContext)
   const navigate = useNavigate()
   const [games] = useLocalStorage<GameData[]>('games', [])  // 11/09 WK9.6 Remove.
-  
   const [pastGames, setGames] = useState<GameData[]>([])   //  11/09 WK9.6 Added.
   //  11/09 WK9.6 Added:
   const fetchGames = useCallback(async () => {
@@ -20,6 +21,8 @@ export default function Games() {
       navigate('/')
     }
   }, [navigate])
+  //  If user is not logged in, redirect to the login page.
+  if (!user) return <Navigate to="/login" replace/>
 
 // 11/09 WK9.6 Need to remove. But it's based on _id, which game doesn't have.
 
