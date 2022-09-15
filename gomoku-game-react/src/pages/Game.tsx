@@ -144,16 +144,38 @@ export default function Game() {
     if (isGameOver(gameStatus)) {
       setGames([
         ...games,
-        { _id, size, moves, date: new Date().toString(), result: gameStatus },
+        { _id, userId, size, moves, date: new Date().toString(), result: gameStatus },  // 15/09 Added userId.
       ])
-      // TODO: PUT request to update game upon game finishing.
       navigate('/games')
+      //  TODO: check if const is ok, or if need let/var.
+      const getDetails = await get<GameData[]>('api/games')
+      const currentDetails = getDetails[getDetails.length-1]  // id, date, moves, result, size
+      const thisId = currentDetails._id
+      // TODO: PUT request to update game upon game finishing.
+      /*
+        * 15/09 Added userId, error now gone: userId is required. 
+        * 10:30AM 
+          * Updated Home.tsx, to be array of arrays 
+          * Updated game.schema.ts. 
+          * Now PUT request, proxy error, could not proxy request.
+          * But error message gone: array. Expected "number", received "array".
+      */
+      await put(`${API_HOST}/api/games/${thisId}`, {
+        //_id,
+        userId,
+        size,
+        moves,
+        date: new Date().toString(),
+        result: gameStatus
+      })
+      
     } else {
       navigate('/')
+      //  Get game details including id.
       const getDetails = await get<GameData[]>('api/games')
       const getId = getDetails[getDetails.length-1]
       const thisId = getId._id
-      //  TODO: check if const is ok, or if need let/var.
+      //  TODO: check if const is ok, or if need let/var. Seems to be fine.
       //  Delete request to delete the game if the user leaves with the game not being finished.
       await del(`${API_HOST}/api/games/${thisId}`)
     }
@@ -170,7 +192,8 @@ export default function Game() {
       // TODO: 11/09 Add _id. Or generated auto?
       setGames([
         ...games,
-        { _id, size, moves, date: new Date().toString(), result: gameStatus },
+        // 15/09 Added userId.
+        { _id, userId, size, moves, date: new Date().toString(), result: gameStatus },
       ])
       navigate('/games')
     } else {

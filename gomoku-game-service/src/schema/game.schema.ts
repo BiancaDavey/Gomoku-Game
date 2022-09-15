@@ -8,10 +8,12 @@ const payload = {
       size: number({
         required_error: "Size is required",
       }),
-      // TODO: number
-      moves: array(number({ 
+      // TODO 15/09 number
+      //moves: array(number({  // Original
+      //moves: array(number(number({   // Second
+      moves: array(array(number({   // 10:30AM Third. Now post error from Home.tsx: expected array, got number. 
         required_error: "Moves is required",
-      })).nonempty(),
+      }))).nonempty(),
       date: string({
         required_error: "Date is required",
       }),

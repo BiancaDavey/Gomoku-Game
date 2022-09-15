@@ -6,7 +6,7 @@ export type Position = [number, number]
 // TODO: remove _id as it's added automatically? Or, need placeholder for userId?
 export type GameData = {
   _id: string
-  //userId: string  // 14/09 Added userId.
+  userId: string  // 15/09 Added userId.
   size: number
   moves: Position[]
   date: string
