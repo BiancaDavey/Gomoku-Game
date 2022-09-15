@@ -11,8 +11,7 @@ import { get, put, del } from '../utils/http'
 
 // TODO: get request to re-render board?
 // TODO: 3. Note- error for leaving game, after signed out? Token missing. Maybe disable logout in header while in game?
-// TODO: 2. Date- keep as POST only? else updated every time.
-            // 14/09: Note: Games uses Date as id to nav to GameLog.
+// 14/09: Note: Games uses Date as id to nav to GameLog.
 
 const isGameOver = (gameStatus: GAME_STATUS) =>
   [GAME_STATUS.DRAW, GAME_STATUS.BLACK_WIN, GAME_STATUS.WHITE_WIN].includes(
@@ -31,6 +30,7 @@ export default function Game() {
   if (!user) return <Navigate to="/login" replace/>
   const _id = ""
   const userId = ""
+  const date = ""
   
   if (!AVAILABLE_GAME_SIZES.includes(size)) {
     return (
@@ -70,7 +70,7 @@ export default function Game() {
       userId,
       size,
       moves,
-      date: new Date().toString(),
+      date,
       result: gameStatus
     })
   }
@@ -94,8 +94,7 @@ export default function Game() {
       userId,
       size,
       moves: [[]],
-      // TODO: currently updates Date every time. Keep date as POST date only?
-      date: new Date().toString(),
+      date,
       result: gameStatus
     }) 
   }

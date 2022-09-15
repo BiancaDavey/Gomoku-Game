@@ -14,8 +14,4 @@ export enum GAME_STATUS {
   DRAW = 'Draw',
 }
 
-export enum GameActionType {
-  INITIALISE = 'INITIALISE'
-}
-
 export const API_HOST = process.env.REACT_APP_API_HOST || ''
