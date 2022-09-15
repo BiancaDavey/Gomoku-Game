@@ -6,6 +6,8 @@ import type { GameData } from '../types'
 import style from './Games.module.css'
 import { get } from '../utils/http'
 
+// ! 14/09 TODO: Games is listing (I think) ALL games, as in not matching the user's id. Access only that user's games.
+
 export default function Games() {
   const { user } = useContext(UserContext)
   const navigate = useNavigate()
@@ -24,8 +26,6 @@ export default function Games() {
   //  If user is not logged in, redirect to the login page.
   if (!user) return <Navigate to="/login" replace/>
 
-// 11/09 WK9.6 Need to remove. But it's based on _id, which game doesn't have.
-
   return (
     <>
       <h1 className={style.header}>Previous Games</h1>
@@ -38,7 +38,7 @@ export default function Games() {
             </p>
             <button
               className={style.button}
-              onClick={() => navigate(`/game-log/${d.getTime()}`)} // use timestamp as id
+              onClick={() => navigate(`/game-log/${d.getTime()}`)}  // Use timestamp as id.
             >
               View Game Log
             </button>

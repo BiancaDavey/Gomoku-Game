@@ -12,10 +12,12 @@ export enum GAME_STATUS {
   BLACK_WIN = 'Winner: Player One Black',
   WHITE_WIN = 'Winner: Player Two White',
   DRAW = 'Draw',
+  // 13/09 Add:
+  // INITIALISE = 'INITIALISE',
 }
 
-// 13/09 added.
-export const API_HOST = process.env.REACT_APP_API_HOST || ''
+export enum GameActionType {
+  INITIALISE = 'INITIALISE'
+}
 
-// 11/09 WK9.5.11
-// INITIALISE = 'INITIALISE'
+export const API_HOST = process.env.REACT_APP_API_HOST || ''

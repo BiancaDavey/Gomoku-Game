@@ -1,4 +1,4 @@
-export type Game = {
+export type GameDetails = {
     _id: string,
     userId: string,
     size: number,
