@@ -10,12 +10,12 @@ Gomoku is a React program creating a Gomoku game for the user to play. The progr
 * Size of game board can be selected by the user.
 * Display of the id and final status of each saved game on the Games History page.
 * Display of the moves made in each game in order, including the square selected and the player who selected the square.
-
-====
-TODO: 
 * Validation of user input for logging in, with an error message displaying if the user has not entered a valid username and password.
 * User validation with token.
 * Restricted access to the Game, Games History and Game Log pages of the application, being only for authenticated users who have logged in successfully.
+
+====
+TODO: 
 * Express
 * MongoDB
 ====
@@ -57,9 +57,9 @@ TODO: add Postman, MongoDB.
 
 =====
 TODO:
-* Add game images
-* Add images of Postman
-* Add images of MongoDB
+* Add game images.
+* Add images of Postman.
+* Add images of MongoDB.
 =====
 
 ## Author

@@ -9,9 +9,7 @@ import style from './Game.module.css'
 import { isGameEnded } from '../utils'
 import { get, put, del } from '../utils/http'
 
-// TODO: get request to re-render board?
 // TODO: 3. Note- error for leaving game, after signed out? Token missing. Maybe disable logout in header while in game?
-// 14/09: Note: Games uses Date as id to nav to GameLog.
 
 const isGameOver = (gameStatus: GAME_STATUS) =>
   [GAME_STATUS.DRAW, GAME_STATUS.BLACK_WIN, GAME_STATUS.WHITE_WIN].includes(
@@ -63,9 +61,9 @@ export default function Game() {
     const getDetails = await get<GameData[]>('api/games')
     const currentDetails = getDetails[getDetails.length-1]
     const thisId = currentDetails._id
-    // PUT request to update the game upon the user making a move.
     console.log(`Game id: ${thisId}`)
     console.log('Put request to update upon user making a move.')
+    // PUT request to update the game upon the user making a move.
     await put(`${API_HOST}/api/games/${thisId}`, {
       userId,
       size,

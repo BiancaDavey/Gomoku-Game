@@ -1,6 +1,5 @@
 import mongoose, { Document } from "mongoose"
 import { UserDocument } from './user.model'
-import type { Position } from '../../../gomoku-game-react/src/types'  // 15/09
 
 export interface GameDocument extends Document {
     userId: UserDocument["_id"];
