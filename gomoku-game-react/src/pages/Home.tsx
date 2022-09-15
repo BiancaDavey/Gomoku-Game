@@ -14,7 +14,7 @@ export default function Home() {
     await post(`${API_HOST}/api/games`, {
       userId: "",
       size: size,
-      moves: [[0]],
+      moves: [[]],
       date: "",
       result: "",
     })

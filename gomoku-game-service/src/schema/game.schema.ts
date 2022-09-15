@@ -10,8 +10,6 @@ const payload = {
       }),
       moves: array(array(number({
         required_error: "Moves is required",
-        // TODO: trying removing nonempty. I think that worked. Console log to check.
-      //}))).nonempty(),
       }))),
       date: string({
         required_error: "Date is required",

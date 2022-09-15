@@ -5,8 +5,7 @@ import type { Position } from '../../../gomoku-game-react/src/types'  // 15/09
 export interface GameDocument extends Document {
     userId: UserDocument["_id"];
     size: number,
-    moves: number[][]  // TODO 15/09.
-    //moves: [number],  // Original.
+    moves: number[][],
     date: string,
     result: string
 }
