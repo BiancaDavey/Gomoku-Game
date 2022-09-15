@@ -12,7 +12,6 @@ export default function Home() {
   //  POST request to create a new game.
   const handleStartClick = async () => {
     await post(`${API_HOST}/api/games`, {
-      //_id: "",  // 14/09 Added _id. 15/09 Add it?
       userId: "",
       size: size,
       moves: [[0]],

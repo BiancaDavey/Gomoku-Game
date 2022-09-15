@@ -12,8 +12,6 @@ export enum GAME_STATUS {
   BLACK_WIN = 'Winner: Player One Black',
   WHITE_WIN = 'Winner: Player Two White',
   DRAW = 'Draw',
-  // 13/09 Add:
-  // INITIALISE = 'INITIALISE',
 }
 
 export enum GameActionType {

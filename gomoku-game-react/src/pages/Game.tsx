@@ -1,9 +1,9 @@
-import { useState, useContext, useCallback } from 'react'
+import { useState, useContext } from 'react'
 import { Navigate, useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { useLocalStorage } from '../hooks'
 import { Board, Button } from '../components'
 import { UserContext } from '../context'
-import { AVAILABLE_GAME_SIZES, GAME_STATUS, API_HOST, GameActionType } from '../constants'
+import { AVAILABLE_GAME_SIZES, GAME_STATUS, API_HOST } from '../constants'
 //import { GameAction } from '../types/GameAction'
 import { GameDetails } from '../types/GameDetails'
 import type { Position, GameData } from '../types'
@@ -13,6 +13,7 @@ import { get, put, del } from '../utils/http'
 
 // TODO: get request to re-render board.
 // TODO: put request to update board.
+// TODO: Note- error for leaving game, after signed out? Token missing. Maybe disable logout in header while in game?
 //  14/09: Note: Games uses Date as id to nav to GameLog.
 
 const isGameOver = (gameStatus: GAME_STATUS) =>
@@ -39,29 +40,6 @@ export default function Game() {
   // 14/09
   let currentGameId = ""
 
-  /*
-  //  TODO: GET request to get current game id.
-  const fetchCurrentGameId = useCallback(async () => {
-    try {
-      const result = await get<GameData[]>('/api/games')
-      const thisResult = result[result.length-1]
-      //  Id for the current game.
-      const thisResultId = thisResult._id
-      console.log(`thisResultId: ${thisResultId}`)
-      setGame(result)
-      //  14/09 Update currentGameId
-      currentGameId = thisResultId
-      //  Return id.  // !13/09 Added myself. Delete if issues.
-      // 15/09: This returns the id.
-      return thisResultId
-    } catch (error) {
-      console.log((error as Error).message)
-      navigate('/')
-    }
-  }, [navigate])
-  */
-
-  // 15/09: Trying without useCallback.
     //  TODO: GET request to get current game id.
     const fetchCurrentGameId = async () => {
       try {
@@ -85,8 +63,8 @@ export default function Game() {
   //  If user is not logged in, redirect to the login page.
   if (!user) return <Navigate to="/login" replace/>
   // TODO 11/09: Add _id, or auto generated?
-  const _id = ""  // 14/09 Changed from gameId to "". Works ok for POST.
-  const userId = ""  // 14/09 Added userId.
+  const _id = ""
+  const userId = ""
   
   if (!AVAILABLE_GAME_SIZES.includes(size)) {
     return (
@@ -96,15 +74,15 @@ export default function Game() {
     )
   }
 
-  // TODO: PUT request to update moves.
-  const updateGameStatus = (move: Position) => {
+  const updateGameStatus = async (move: Position) => {
     if (isGameOver(gameStatus)) return
     const updatedMoves = [...moves, move]
-    //getId()  // Added 13/09.
+    /*
     console.log(`moves: ${moves}`)
     console.log(`move: ${move}`)
     console.log(`updatedMoves: ${updatedMoves}`)
     fetchCurrentGameId()  // 14/09.
+    */
     if (isGameEnded(size, updatedMoves)) {
       if (updatedMoves.length === size * size) {
         setGameStatus(GAME_STATUS.DRAW)
@@ -121,18 +99,44 @@ export default function Game() {
       )
     }
     setMoves(updatedMoves)
+    const getDetails = await get<GameData[]>('api/games')
+    const currentDetails = getDetails[getDetails.length-1]  // id, date, moves, result, size
+    const thisId = currentDetails._id
+    // PUT request to update the game upon the user leaving the game with the game being finished.
+    // TODO: error when sending first move. Move must contain at least one element. Remove nonempty?
+    console.log(`Game id: ${thisId}`)
+    console.log('Put request to update upon user making a move.')
+    await put(`${API_HOST}/api/games/${thisId}`, {
+      userId,
+      size,
+      moves,
+      date: new Date().toString(),
+      result: gameStatus
+    })
   }
 
   //  Restart the game.
-  const restart = () => {
+  const restart = async () => {
     if (
       !isGameOver(gameStatus) &&
       !window.confirm('The game is still in progress. Are you sure to restart?')
     )
       return
-    // TODO: PUT request to update moves to 0.
     setMoves([])
     setGameStatus(GAME_STATUS.BLACK_MOVE)
+    // TODO: PUT request to update moves to 0. 
+    // ! Currently it's not making the request.
+    const getDetails = await get<GameData[]>('api/games')
+    const currentDetails = getDetails[getDetails.length-1]  // id, date, moves, result, size
+    const thisId = currentDetails._id
+    // PUT request to update the game upon the user leaving the game with the game being finished.
+    await put(`${API_HOST}/api/games/${thisId}`, {
+      userId,
+      size,
+      moves,
+      date: new Date().toString(),
+      result: gameStatus
+    }) 
   }
 
   const leaveGame = async () => {
@@ -147,57 +151,26 @@ export default function Game() {
         { _id, userId, size, moves, date: new Date().toString(), result: gameStatus },  // 15/09 Added userId.
       ])
       navigate('/games')
-      //  TODO: check if const is ok, or if need let/var.
       const getDetails = await get<GameData[]>('api/games')
       const currentDetails = getDetails[getDetails.length-1]  // id, date, moves, result, size
       const thisId = currentDetails._id
-      // TODO: PUT request to update game upon game finishing.
-      /*
-        * 15/09 Added userId, error now gone: userId is required. 
-        * 10:30AM 
-          * Updated Home.tsx, to be array of arrays 
-          * Updated game.schema.ts. 
-          * Now PUT request, proxy error, could not proxy request.
-          * But error message gone: array. Expected "number", received "array".
-      */
+      // PUT request to update the game upon the user leaving the game with the game being finished.
+      console.log('Put request to update upon user leaving game.')
       await put(`${API_HOST}/api/games/${thisId}`, {
-        //_id,
         userId,
         size,
         moves,
         date: new Date().toString(),
         result: gameStatus
-      })
-      
+      }) 
     } else {
       navigate('/')
       //  Get game details including id.
       const getDetails = await get<GameData[]>('api/games')
       const getId = getDetails[getDetails.length-1]
       const thisId = getId._id
-      //  TODO: check if const is ok, or if need let/var. Seems to be fine.
       //  Delete request to delete the game if the user leaves with the game not being finished.
       await del(`${API_HOST}/api/games/${thisId}`)
-    }
-  }
-
-// 13/09 Original Leave function (works):
-  const leave = () => {
-    if (
-      !isGameOver(gameStatus) &&
-      !window.confirm('The game is still in progress. Are you sure to leave?')
-    )
-      return
-    if (isGameOver(gameStatus)) {
-      // TODO: 11/09 Add _id. Or generated auto?
-      setGames([
-        ...games,
-        // 15/09 Added userId.
-        { _id, userId, size, moves, date: new Date().toString(), result: gameStatus },
-      ])
-      navigate('/games')
-    } else {
-      navigate('/')
     }
   }
   
