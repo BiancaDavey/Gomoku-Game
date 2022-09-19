@@ -1,27 +1,31 @@
-import { useContext, useCallback, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { Button } from '../components'
+import { Message } from '../components'
 import { UserContext } from '../context'
-import { useLocalStorage } from '../hooks'
 import type { GameData } from '../types'
 import style from './Games.module.css'
 import { get } from '../utils/http'
 
-  // TODO: 2.   Hide "View Past Games" button once clicked.
-  // TODO: 3.   "Loading" text for 3 seconds.
-  // TODO: 4.    "View Past Games" button after 3 seconds.
-
 export default function Games() {
   const { user } = useContext(UserContext)
   const navigate = useNavigate()
-  const [games] = useLocalStorage<GameData[]>('games', [])
   const [userGames, setUserGames] = useState<GameData[]>([])
-  let buttonHidden = false
+  const [showMessage, setShowMessage] = useState(true)
+  let message = "Please wait a few seconds for your past games to load..."
 
-  const pastGamesButton = () => {
-    navigate('/games')
-    buttonHidden = true
-    return buttonHidden
+  //  Timeout to remove loading message after 5 seconds.
+  setTimeout(() => {
+    setShowMessage(false)
+  }, 5000)
+
+  //  Display a message informing the user that the past games list is loading.
+  const displayLoadingMessage = () => {
+    if (showMessage)
+    return (
+      <>
+        <Message variant="info" message={message}></Message>
+      </>
+    )
   }
 
   const getUserGames = async () => {
@@ -42,13 +46,8 @@ export default function Games() {
 
   if (!userGames){
     return (
-      <div className={style.viewButton}>
-        <Button onClick={() => 
-          navigate('/games')
-        }
-        >
-          View Past Games
-        </Button>
+      <div className={style.title}>
+        {displayLoadingMessage()}
       </div> 
     )
   }
@@ -56,6 +55,7 @@ export default function Games() {
   return (
     <>
       <h1 className={style.header}>Past Games</h1>
+      {displayLoadingMessage()}
       {userGames.map(({ date, result, _id }, index) => {
         const d = new Date(date)
         return (
@@ -72,14 +72,6 @@ export default function Games() {
           </div>
         )
       })}
-      <div className={style.title}>
-        <Button disabled={buttonHidden} onClick={() => 
-            navigate('/games')
-          }
-        >
-          View Past Games
-        </Button>
-      </div> 
     </>
   )
 }

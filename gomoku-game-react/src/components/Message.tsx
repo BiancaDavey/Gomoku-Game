@@ -2,7 +2,7 @@ import style from './Message.module.css'
 
 type MessageProps = {
     //  Variant determines the style of the message.
-    variant: 'info' | 'success' | 'warning' | 'error'
+    variant: 'info' | 'success' | 'warning' | 'error' | 'hidden'
     message: string
 }
 

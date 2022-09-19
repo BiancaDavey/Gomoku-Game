@@ -13,7 +13,7 @@ export default function Header() {
       return (
         <>
           <button className={style.action} onClick={() => navigate('/games')}>
-            PREVIOUS GAMES
+            PAST GAMES
           </button>
           <button 
             className={style.action} 

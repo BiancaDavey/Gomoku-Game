@@ -1,23 +1,43 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
-import { useLocalStorage } from '../hooks'
-import { Board, Button } from '../components'
+import { Board, Button, Message } from '../components'
 import { UserContext } from '../context'
 import type { GameData } from '../types'
 import style from './GameLog.module.css'
 import { get } from '../utils/http'
 
-  // TODO: 5.   "Loading" text for 3 seconds.
-  // TODO: 6.    "View Game Board" button after 3 seconds.
-
 export default function GameLog() {
   const { user } = useContext(UserContext)
   const { gameId = '' } = useParams()
   const navigate = useNavigate()
-  const [games] = useLocalStorage<GameData[]>('games', [])
   const [gameById, setGameById] = useState<GameData[]>([])
+  const [showMessage, setShowMessage] = useState(true)
+  let message = "Please wait a few seconds for the game board to load..."
   //  If user is not logged in, redirect to the login page.
   if (!user) return <Navigate to="/login" replace/>
+
+  //  Timeout to remove loading message after 3 seconds.
+  setTimeout(() => {
+    setShowMessage(false)
+  }, 3000)
+
+  //  Display a message informing the user that the game log is loading.
+  const displayLoadingMessage = () => {
+    if (showMessage){
+      return (
+        <>
+          <Message variant="info" message={message}></Message>
+        </>
+      )
+    }
+    else {
+      return (
+        <>
+          <Message variant="hidden" message={message}></Message>
+        </>
+      )
+    }
+  }
 
   const getGameById = async () => {
     const getDetails = await get<GameData[]>('../api/games')
@@ -26,7 +46,7 @@ export default function GameLog() {
         gameById.push(getDetails[g])
       }
     }
-    setGameById(gameById)  // Made no difference.
+    setGameById(gameById)
   }
 
   getGameById()
@@ -37,6 +57,7 @@ export default function GameLog() {
   if (!game)
     return (
       <div>
+        {displayLoadingMessage()}
         <p className={style.text}>
           Select an option:
         </p>

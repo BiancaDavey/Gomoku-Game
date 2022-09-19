@@ -11,11 +11,11 @@
   }
   
   .info {
-    background-color: #2196F3;
+    background-color: rgb(138, 0, 251);
   }
   
   .success {
-    background-color: rgb(138, 0, 251);
+    background-color: #2196F3;
   }
   
   .warning {
@@ -24,4 +24,8 @@
   
   .error {
     background-color: #BF1266;
+  }
+
+  .hidden {
+    visibility: hidden;
   }
