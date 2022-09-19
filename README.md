@@ -50,10 +50,10 @@ Gomoku is a React program creating a Gomoku game for the user to play. The progr
 [![Gomoku-Game-Login-Validation.png](https://i.postimg.cc/XvWKtj2q/Gomoku-Game-Login-Validation.png)](https://postimg.cc/Wd9Jkvcc)
 
 * Sign-Up page
-[![Gomoku-Game-Sign-Up.png](https://i.postimg.cc/1tfKrWCr/Gomoku-Game-Sign-Up.png)](https://postimg.cc/KkhLZ5y1)
+[![Gomoku-Game-Sign-Up.png](https://i.postimg.cc/ZRWWR02F/Gomoku-Game-Sign-Up.png)](https://postimg.cc/cgNxk1sr)
 
 * Home page with game board size selection
-[![Gomoku-Game-Home-Page.png](https://i.postimg.cc/WzZ6QdPD/Gomoku-Game-Home-Page.png)](https://postimg.cc/YLpWFq0k)
+[![Gomoku-Game-Home-Page.png](https://i.postimg.cc/7L66sfH8/Gomoku-Game-Home-Page.png)](https://postimg.cc/3ksYWr0n)
 
 * Game Board with active game status and game board
 [![Gomoku-Game-Game-Board.png](https://i.postimg.cc/ncvG29kg/Gomoku-Game-Game-Board.png)](https://postimg.cc/nChmczNG)
