@@ -47,7 +47,7 @@ Gomoku is a React program creating a Gomoku game for the user to play. The progr
 ## Usage Example
 
 * Login page with credential validation
-[![Gomoku-Game-Login-Validation.png](https://i.postimg.cc/XvWKtj2q/Gomoku-Game-Login-Validation.png)](https://postimg.cc/Wd9Jkvcc)
+[![Gomoku-Game-Login.png](https://i.postimg.cc/cJsYsxdX/Gomoku-Game-Login.png)](https://postimg.cc/DSMm6KJX)
 
 * Sign-Up page
 [![Gomoku-Game-Sign-Up.png](https://i.postimg.cc/ZRWWR02F/Gomoku-Game-Sign-Up.png)](https://postimg.cc/cgNxk1sr)
@@ -55,10 +55,10 @@ Gomoku is a React program creating a Gomoku game for the user to play. The progr
 * Home page with game board size selection
 [![Gomoku-Game-Home-Page.png](https://i.postimg.cc/7L66sfH8/Gomoku-Game-Home-Page.png)](https://postimg.cc/3ksYWr0n)
 
-* Game Board with active game status and game board
+* Game page with active game board and game status
 [![Gomoku-Game-Game-Board.png](https://i.postimg.cc/ncvG29kg/Gomoku-Game-Game-Board.png)](https://postimg.cc/nChmczNG)
 
-* Game Board with winner and read-only game board
+* Game page with final status for game over and read-only game board
 [![Gomoku-Game-Game-Board-Winner.png](https://i.postimg.cc/wM5RXLpk/Gomoku-Game-Game-Board-Winner.png)](https://postimg.cc/Cn1KYZdZ)
 
 * Past Games page
@@ -67,10 +67,10 @@ Gomoku is a React program creating a Gomoku game for the user to play. The progr
 * Game Log displaying final status and read-only game board
 [![Gomoku-Game-Game-Log.png](https://i.postimg.cc/Hk8HFHrq/Gomoku-Game-Game-Log.png)](https://postimg.cc/DShtb9d6)
 
-* The game can be viewed in Postman by sending a GET Games request with authorisation being the Bearer Token for the user.
+* The game can be viewed in Postman by sending a GET Games request with authorisation being the Bearer Token for the user
 [![Gomoku-Game-Postman.png](https://i.postimg.cc/9QLrVG0N/Gomoku-Game-Postman.png)](https://postimg.cc/4YhJQHzz)
 
-* The game can be viewed in MongoDB.
+* The game can be viewed in MongoDB
 [![Gomoku-Game-Mongo-DB.png](https://i.postimg.cc/MTpkwQct/Gomoku-Game-Mongo-DB.png)](https://postimg.cc/WDCY6twJ)
 
 ## Author
