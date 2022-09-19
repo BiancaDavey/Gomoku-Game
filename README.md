@@ -13,18 +13,13 @@ Gomoku is a React program creating a Gomoku game for the user to play. The progr
 * Validation of user input for logging in, with an error message displaying if the user has not entered a valid username and password.
 * User validation with token.
 * Restricted access to the Game, Games History and Game Log pages of the application, being only for authenticated users who have logged in successfully.
-
-====
-TODO: 
-* Express
-* MongoDB
-====
+* Backend with Express and MongoDB.
 
 ## Bonus Features
 
 * Gomoku title with flickering "neon light" animation effect.
 
-## Installation
+## Installation & Set Up
 
 1. Navigate into the gomoku game react folder: `cd gomoku-game-react`
 2. Start the app: `yarn start`
@@ -32,12 +27,8 @@ TODO:
 4. Navigate into the gomoku game service folder: `cd ..`, `cd gomoku-game-service`
 5. Start the backend service: `yarn run dev`
 6. Open a new tab in the web browser and navigate to the Postman Collection for the game: [Postman Collection](https://www.getpostman.com/collections/6be45320a282151c890f).
-7. Click on the "Login" button on the header of the React application to be redirected to the Login page. 
-8. Type the username: admin and the password: admin2022 into the username and password fields, and click Login to log in and be redirected to the Home Page.
-
-==== 
-TODO: add Postman, MongoDB. 
-=====
+7. Click on the "Login" button on the header of the React application to be redirected to the Login page. Type the username: admin and the password: admin2022 into the username and password fields, and click Login to log in and be redirected to the Home Page. This pre-configured user has one past game saved.
+8. Alternatively, click on the "Login" button the header, and then click on the "Sign Up" button on the header to be redirected to the Sign Up page. Enter a username and password and click on the "Sign Up" button to sign up as a new user.
 
 ## Game Instructions
 
@@ -55,9 +46,29 @@ TODO: add Postman, MongoDB.
 
 ## Usage Example
 
+* Login page with credential validation
+[![Gomoku-Game-Login-Validation.png](https://i.postimg.cc/XvWKtj2q/Gomoku-Game-Login-Validation.png)](https://postimg.cc/Wd9Jkvcc)
+
+* Sign-Up page
+[![Gomoku-Game-Sign-Up.png](https://i.postimg.cc/1tfKrWCr/Gomoku-Game-Sign-Up.png)](https://postimg.cc/KkhLZ5y1)
+
+* Home page with game board size selection
+[![Gomoku-Game-Home-Page.png](https://i.postimg.cc/WzZ6QdPD/Gomoku-Game-Home-Page.png)](https://postimg.cc/YLpWFq0k)
+
+* Game Board with active game status and game board
+[![Gomoku-Game-Game-Board.png](https://i.postimg.cc/ncvG29kg/Gomoku-Game-Game-Board.png)](https://postimg.cc/nChmczNG)
+
+* Game Board with winner and read-only game board
+[![Gomoku-Game-Game-Board-Winner.png](https://i.postimg.cc/wM5RXLpk/Gomoku-Game-Game-Board-Winner.png)](https://postimg.cc/Cn1KYZdZ)
+
+* Past Games page
+[![Gomoku-Game-Past-Games.png](https://i.postimg.cc/X7QpnV7X/Gomoku-Game-Past-Games.png)](https://postimg.cc/dLZqBcCK)
+
+* Game Log displaying final status and read-only game board
+[![Gomoku-Game-Game-Log.png](https://i.postimg.cc/Hk8HFHrq/Gomoku-Game-Game-Log.png)](https://postimg.cc/DShtb9d6)
+
 =====
 TODO:
-* Add game images.
 * Add images of Postman.
 * Add images of MongoDB.
 =====

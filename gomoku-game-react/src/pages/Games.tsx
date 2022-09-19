@@ -16,6 +16,13 @@ export default function Games() {
   const navigate = useNavigate()
   const [games] = useLocalStorage<GameData[]>('games', [])
   const [userGames, setUserGames] = useState<GameData[]>([])
+  let buttonHidden = false
+
+  const pastGamesButton = () => {
+    navigate('/games')
+    buttonHidden = true
+    return buttonHidden
+  }
 
   const getUserGames = async () => {
     //  GET request to get game details.
@@ -66,9 +73,9 @@ export default function Games() {
         )
       })}
       <div className={style.title}>
-        <Button onClick={() => 
-          navigate('/games')
-        }
+        <Button disabled={buttonHidden} onClick={() => 
+            navigate('/games')
+          }
         >
           View Past Games
         </Button>
