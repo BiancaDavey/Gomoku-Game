@@ -14,9 +14,6 @@ Gomoku is a React program creating a Gomoku game for the user to play. The progr
 * User validation with token.
 * Restricted access to the Game, Games History and Game Log pages of the application, being only for authenticated users who have logged in successfully.
 * Backend with Express and MongoDB.
-
-## Bonus Features
-
 * Gomoku title with flickering "neon light" animation effect.
 
 ## Installation & Set Up
