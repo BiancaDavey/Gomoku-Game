@@ -16,14 +16,24 @@ Gomoku is a React program creating a Gomoku game for the user to play. The progr
 * Backend with Express and MongoDB.
 * Gomoku title with flickering "neon light" animation effect.
 
-## Installation & Set Up
+## Run the Application Locally
 
 1. Navigate into the gomoku game react folder: `cd gomoku-game-react`
 2. Start the app: `yarn start`
 3. Go to [localhost:3000](http://localhost:3000)
 4. Navigate into the gomoku game service folder: `cd ..`, `cd gomoku-game-service`
 5. Start the backend service: `yarn run dev`
-6. Open a new tab in the web browser and navigate to the Postman Collection for the game: [Postman Collection](https://www.postman.com/collections/6be45320a282151c890f).
+
+## Run the Application with Docker
+
+1. Install Docker if not installed
+2. Navigate into the gomoku game root folder: `gomoku-game`
+3. Run `docker-compose up`
+4. The client application is located at: [localhost:3000](http://localhost:3000)
+5. The server is located at: [localhost:8080](http://localhost:8080)
+6. The MongoDB Docker Container can be accessed with the URI: mongodb://localhost:27017
+7. To rebuild the image if dependencies change, run: `docker-compose up --build`
+8. To stop: run `docker-compose down`
 
 ## Game Instructions
 
