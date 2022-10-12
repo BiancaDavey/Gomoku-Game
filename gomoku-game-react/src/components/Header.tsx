@@ -15,6 +15,9 @@ export default function Header() {
           <button className={style.action} onClick={() => navigate('/games')}>
             PAST GAMES
           </button>
+          <button className={style.action} onClick={() => navigate('/forum')}>
+            FORUM
+          </button>
           <button 
             className={style.action} 
             onClick={() => {

@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Header, UserProvider } from './components'
-import { Home, Game, Games, GameLog, Login, SignUp } from './pages'
+import { Home, Game, Games, GameLog, Login, SignUp, Forum } from './pages'
 import style from './App.module.css'
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
             <Route path="game-log/:gameId" element={<GameLog />} />
             <Route path="login" element={<Login/>} />
             <Route path="sign-up" element={<SignUp/>} />
+            <Route path="forum" element={<Forum/>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
