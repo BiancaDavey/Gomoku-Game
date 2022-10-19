@@ -1,13 +1,17 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { useNavigate, Navigate } from 'react-router-dom'
 import { Button } from '../components'
+import { UserContext } from '../context'
 import { get, put, del } from '../utils/http'
 import style from './CreatePost.module.css'
 
 export default function CreatePost() {
+    const { user } = useContext(UserContext)
     const navigate = useNavigate() 
     const [postTitle, setPostTitle] = useState('')
     const [postContent, setPostContent] = useState('')
+    //  If user is not logged in, redirect to the login page.
+    if (!user) return <Navigate to="/login" replace/>
 
     //  TODO: Implement function.
     const createNewPost = () => {
