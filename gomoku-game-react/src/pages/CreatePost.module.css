@@ -6,7 +6,7 @@
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
 
-.menu {
+.buttons {
     display: flex;
-    gap: 30rem;
+    gap: 2rem;
 }
