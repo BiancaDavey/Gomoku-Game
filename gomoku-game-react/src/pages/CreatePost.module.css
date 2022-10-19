@@ -9,4 +9,27 @@
 .buttons {
     display: flex;
     gap: 2rem;
+    margin-top: 2rem;
+}
+
+.textFieldTitle {
+    width: 50rem;
+    background-color: rgb(33, 33, 33);
+    color: whitesmoke;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1rem;
+    border: solid 2.5px;
+    border-color: whitesmoke;
+}
+
+.textFieldContents {
+    margin-top: 2rem;
+    width: 50rem;
+    background-color: rgb(33, 33, 33);
+    color: whitesmoke;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1rem;
+    height: 20rem;
+    border: solid 2.5px;
+    border-color: whitesmoke;
 }
