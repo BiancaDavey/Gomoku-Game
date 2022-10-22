@@ -46,7 +46,7 @@ export default function Header() {
   return (
     <header className={style.header}>
       <div className={style.container}>
-        <Link to="/">Gomoku</Link>
+        <Link className={style.title} to="/">Gomoku</Link>
         <div className={style.actions}>{getActions()}</div>
       </div>
     </header>
