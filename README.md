@@ -1,6 +1,6 @@
 # Gomoku-Game
 
-Gomoku is a React program creating a Gomoku game for the user to play. The program provides for the user to play as player one against player two. The game is won by player one placing five blue squares in a row horizontally, vertically or diagonally, or by player two placing five white squares in a row horizontally, vertically or diagonally.
+Gomoku is a React program creating a Gomoku game. The program provides for the user to play as player one against player two. The game is won by player one placing five blue squares in a row horizontally, vertically or diagonally, or by player two placing five white squares in a row horizontally, vertically or diagonally.
 
 ## Features
 
