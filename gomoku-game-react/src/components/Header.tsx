@@ -1,12 +1,27 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { UserContext } from '../context'
+import { ThemeContext } from '../context'
 import style from './Header.module.css'
 
 export default function Header() {
   const navigate = useNavigate()
   const location = useLocation()
   const { user, logout } = useContext(UserContext)
+  const { updateTheme } = useContext(ThemeContext)
+  const [themeApplied, setThemeNumber] = useState("")
+
+  const setThemeSynthwave = () => {
+    console.log('TODO: Set synthwave theme.')
+    setThemeNumber("0")
+    updateTheme(themeApplied)
+  }
+
+  const setThemeMatrix = () => {
+    console.log('TODO: Set matrix theme.')
+    setThemeNumber("1")
+    updateTheme(themeApplied)
+  }
 
   const getActions = () => {
     if (user) {
@@ -26,6 +41,10 @@ export default function Header() {
             }}
           >
             LOGOUT
+          </button>
+          <button className={style.themeButton} onClick={setThemeSynthwave}>
+          </button>
+          <button className={style.themeButton1} onClick={setThemeMatrix}>
           </button>
         </>
       )

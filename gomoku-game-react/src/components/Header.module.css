@@ -78,3 +78,39 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+.themeButton {
+  background-color: transparent;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-top: 1rem;
+  border: solid 1.5px;
+  border-color: rgb(255, 22, 185);
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.themeButton1 {
+  background-color: transparent;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-top: 1rem;
+  border: solid 1.5px;
+  border-color: #00FF41;
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.themeButton1:hover {
+  box-shadow: 0px 0px 40px #00FF41;
+  background: linear-gradient(90deg, black 0%, #00FF41 90%);
+}
+
+.themeButton:hover { 
+  box-shadow: 0px 0px 40px rgb(255, 22, 185);
+  background: linear-gradient(90deg, aqua 0%, rgb(255, 22, 185) 90%);
+}
